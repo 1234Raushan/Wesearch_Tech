@@ -1,0 +1,22 @@
+
+
+/* .common-modal-dialog
+{
+  width: 60%;
+} */
+
+/* .bg-cover{
+  background: linear-gradient(to right, #06e2bd, #0486c2);
+} */
+
+.main-font-col{
+  /* color: linear-gradient(to right, #06e2bd, #0486c2)!important; */
+  /* color: #06e2bd; */
+  /* font-size: 1.6rem; */
+  background: #856dff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  height: 10vh;
+  /* text-transform: ; */
+}
+

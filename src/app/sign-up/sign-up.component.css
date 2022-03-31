@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgb(3, 99, 243);
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  /* font-weight: 500; */
+  /* background-color: rgb(14, 106, 167); */
+  background: url('https://images.unsplash.com/photo-1529236183275-4fdcf2bc987e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=867&q=80');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+
+.sign-up{
+  position: absolute;
+  /* -webkit-filter: blur(8px); */
+  /* filter: blur(8px); */
+  /* z-index: -1; */
+  width: 100%;
+  /* z-index: 1; */
+}
+
+
+.header .container .row .box-1{
+  /* height: 100%; */
+  /* background-color;  ; */
+  background: url('http://localhost:4200/assets/Images/WESEARCH-2.png');
+  /* border: 2px solid black; */
+  background-position: center;
+  /* -webkit-filter: blur(8px); */
+  /* z-index: 1; */
+  background-size:auto;
+  background-repeat: no-repeat;
+  height: 100%;
+  border-radius: 24px 0px 0px 24px;
+
+}
+.labguru{
+  color: aqua;
+}
+
+/* .bg-dark{ */
+  /* opacity: 2.re; */
+  /* background-image: linear-gradient(to right, rgba(17, 17, 17, 0.527), rgb(0, 102, 255)); */
+  /* background-image: linear-gradient(to right, #f5f5f579, #0583f891, #4c00ff85, #05baf19f); */
+/* } */
+
+.btn-primary{
+  /* background-color: rgb(17, 182, 88); */
+  background-image: linear-gradient(to right,  #25272379, #0583f891, #4c00ff85);
+}
+/*
+.header .container .row .box-2{
+  border-radius: 0px 24px 24px 0px;
+} */
+
+.form .buttton-1:hover{
+  background-color: aqua;
+}
+
+.buttton-1,.button-2 {
+  display: inline-block;
+
+}
+
+
+
+/* .content{
+  border-radius: 30px;
+  background: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fbackgrounds%2Fcolors%2Fgradient&psig=AOvVaw30HXaO-_WPU2-zEcfhPO79&ust=1640084760356000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMjfnP6d8vQCFQAAAAAdAAAAABAD');
+} */
+
+/*
+@media (max-width:1200px) {
+
+  .box-1{
+
+  }
+
+} */

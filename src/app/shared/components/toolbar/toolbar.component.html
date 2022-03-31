@@ -1,0 +1,92 @@
+<header class="topbar bg-cover">
+  <nav class="navbar top-navbar navbar-expand-md navbar-light">
+    <!-- ============================================================== -->
+    <!-- Logo -->
+    <!-- ============================================================== -->
+    <div class="navbar-header ">
+      <a class="navbar-brand">
+        <!-- Logo icon -->
+        <b class="text-white text-small logoicon"><img src="assets/Images/WESEARCH.png"/></b>
+        <span class="logotext text-white text-full">WESEARCH</span> </a>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Logo -->
+    <!-- ============================================================== -->
+    <div class="navbar-collapse">
+      <!-- ============================================================== -->
+      <!-- toggle and nav items -->
+      <!-- ============================================================== -->
+      <ul class="navbar-nav mt-md-0">
+        <li class="nav-item">
+          <a class="nav-link sidebartoggler text-muted waves-effect waves-dark" href="javascript:void(0)" (click)="WindowResize($event)"><i class="ti-menu-alt"></i></a>
+        </li>
+        </ul>
+
+
+
+      <ul class="navbar-nav mx-auto mt-md-0">
+        <li class="nav-item">
+          <h4 class="toBeHidden mb-0" style="text-align: center; color:#ffffff">{{utilsService.getLoginUsers()?.Welcome}}</h4>
+          <!-- <div class="saerchbars">
+            <div class="searchbox">
+              <div class="inputicon">
+                <input class="form-control text-white" type="search" required="" placeholder="Type to search">
+                <span class="text-white"><i class="ti-search"></i></span>
+              </div>
+              <button class="btn btn-outline-white">Search</button>
+            </div>
+          </div> -->
+        </li>
+      </ul>
+
+      <!-- <ul class="navbar-nav mx-auto mt-md-0">
+        <li class="nav-item">
+          <div class="saerchbars">
+            <div class="searchbox">
+              <div class="inputicon">
+                <input class="form-control text-white" type="search" required="" placeholder="Type to search">
+                <span class="text-white"><i class="ti-search"></i></span>
+              </div>
+              <button class="btn btn-outline-white">Search</button>
+            </div>
+          </div>
+        </li>
+      </ul> -->
+      <!-- ============================================================== -->
+      <!-- User profile and search -->
+      <!-- ============================================================== -->
+      <ul class="navbar-nav my-lg-0">
+        <!-- ============================================================== -->
+        <!-- Profile -->
+        <!-- ============================================================== -->
+        <li class="nav-item dropdown">
+          <a class="nav-link  text-muted waves-effect waves-dark" href="#" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><i class="ti-settings mr-2 "></i></a>
+          <div class="dropdown-menu dropdown-menu-right scale-up">
+            <ul class="dropdown-user">
+              <li>
+                <div class="dw-user-box">
+                  <div class="u-text">
+                    <h6>Welcome,</h6>
+                    <h4 class="font-cover">{{utilsService.getLoginUsers()?.UserName}}</h4>
+                  </div>
+                </div>
+              </li>
+              <li role="separator" class="divider"></li>
+              <!-- <li>
+                <a >
+                  <i class="ti-user mr-2"></i>Profile Settings</a></li>
+              <li><a  ><i class="ti-panel mr-2"></i>Default Values</a>
+              </li>
+              <li><a (click)="openLoginDetailsModal()"><i class="ti-calendar mr-2"></i>Login
+                  Details</a></li>
+              <li><a  ><i class="ti-settings mr-2"></i>Change
+                  Password</a></li> -->
+              <li><a class="effect-grad" (click)="storageListernerService.clear()"><i class="ti-power-off mr-2 "></i> Logout</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

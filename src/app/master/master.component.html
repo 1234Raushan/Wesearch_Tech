@@ -1,0 +1,96 @@
+<!-- Header section -->
+<div>
+    <div class="row page-titlebar1 p-0">
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 bgwhite-p10 d-flex justify-content-center justify-content-md-start">
+        <div class="form-material">
+          <h3 class="text-themecolor m-b-0 m-t-3 titleshadow">Master</h3>
+        </div>
+      </div>
+      <div class="col-sm-5 col-md-6 col-lg-5 col-xl-6 form-material px-0 pl-lg-2 pl-md-2 pl-xl-2 pl-sm-2">
+        <div class="col-md-12 col-lg-12 col-xl-12 px-0 h-100">
+          <div class="bgwhite-p10 p-0 d-flex align-items-center h-100  justify-content-center justify-content-sm-start justify-content-md-start pl-lg-3 pl-md-3 pl-xl-3 pl-sm-3">
+            <div class="required col-md-5">
+                 <ng-select [items]="SelectList"
+                            [dropdownPosition]="'bottom'"
+                            placeholder="Select table"
+                            notFoundText="SubStage not found."
+                            [clearable]="false"
+                            bindLabel="Name"
+                            bindValue="id"
+                            [(ngModel)]="SelectedID"
+                            (change)="getDetails()">
+                </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5 col-md-5 col-lg-4 col-xl-4 d-flex justify-content-md-end  justify-content-center bgwhite-p10">
+        <div _ngcontent-c13="" class="">
+          <div _ngcontent-c13="" class="searchbox">
+            <div _ngcontent-c13="" class="inputicon commonfilter">
+              <input _ngcontent-c13="" class="form-control ng-pristine ng-valid ng-touched mb-1"
+                placeholder="Type To Filter" type="text" ng-reflect-is-disabled="false" (keyup)="filterData($event.target)">
+              <span _ngcontent-c13="" class="common-filter-icon" data-toggle="modal">
+                <i _ngcontent-c13="" class="ti-filter"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <button class="btn btn-icon ml-2" data-toggle="tooltip"
+          data-placement="bottom" title="Close"><i class="ti-close" style="font-size:larger"></i></button> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- End of Header section -->
+
+  <!-- Stage Grid  -->
+  <div class="tab-content">
+    <div class="tab-pane active">
+      <div>
+        <div class="row mobilefooterpadding">
+          <div class="col-md-12">
+            <div class="card stagess card-flex common-master-table-height mb-0 common-border-grid">
+              <div class="card-body p-0 width100-per" >
+                <div class="table-responsive casehistorytable overflow-auto caselisttabel" id="table-footer">
+
+
+                  <ngx-datatable class="bootstrap material" [rows]="arrayForAutoTables"
+                    [columnMode]="'force'" [limit]="11" [scrollbarH]="true" [footerHeight]="25" >
+
+                    <ngx-datatable-column name="Name" prop="Description" [width]="180" >
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.Description}}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+
+                    <ngx-datatable-column name="Email ID" prop="EmailID" [width]="180" *ngIf="SelectedID == 5">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.EmailID}}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Mobile No" prop="MobileNo" [width]="180" *ngIf="SelectedID == 5">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.MobileNo}}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Display Name" prop="DisplayName" [width]="180" *ngIf="SelectedID == 5">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.DisplayName}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

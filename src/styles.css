@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('../src/assets/css/custom.css');
+@import url('../src/assets/css/icons/themify-icons/themify-icons.css');
+@import url('../src/assets/css/bootstrap.min.css');
+/* @import url('../src/assets/css/font-awesome.min.css'); */
+@import '~ngx-toastr/toastr.css';
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";

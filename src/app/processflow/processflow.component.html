@@ -1,0 +1,469 @@
+<!-- Header section -->
+<div>
+  <div class="row page-titlebar1 p-0">
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 bgwhite-p10 d-flex justify-content-center justify-content-md-start">
+      <div class="form-material">
+        <h3 class="text-themecolor m-b-0 m-t-5 titleshadow">Process Flow</h3>
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-5 col-xl-4 form-material px-0 pl-lg-2 pl-md-2 pl-xl-2 pl-sm-2">
+      <div class="col-md-12 col-lg-12 col-xl-12 px-0 h-100">
+        <div class="bgwhite-p10 p-0 d-flex align-items-center justify-content-center justify-content-md-start h-100 pl-lg-3 pl-md-3 pl-xl-3">
+          <div class="required">
+            <a data-toggle="modal" (click)="addNewProcessFlow()" class="aTag" >Add New Process Flow</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-4 col-xl-5 d-flex justify-content-md-end bgwhite-p10 d-flex justify-content-center">
+      <div _ngcontent-c13="" class="">
+        <div _ngcontent-c13="" class="searchbox">
+          <div _ngcontent-c13="" class="inputicon commonfilter">
+            <input _ngcontent-c13="" class="form-control ng-pristine ng-valid ng-touched mb-1"
+            [(ngModel)]="searchText"
+              placeholder="Type To Filter" type="text" ng-reflect-is-disabled="false" (keyup)="filterData()">
+            <span _ngcontent-c13="" class="common-filter-icon" data-toggle="modal">
+              <i _ngcontent-c13="" class="ti-filter"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- <button class="btn btn-icon ml-2"  data-toggle="tooltip"
+        data-placement="bottom" title="Close"><i class="ti-close" style="font-size:larger"></i></button> -->
+    </div>
+  </div>
+</div>
+
+<!-- End of Header section -->
+
+
+
+<!-- Process Flow Grid  -->
+<div class="tab-content">
+  <div class="tab-pane active">
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card stagess card-flex common-master-table-height mb-0 common-border-grid">
+            <div class="card-body p-0 width100-per" >
+              <div class="table-responsive casehistorytable overflow-auto caselisttabel" id="table-footer">
+
+                <ngx-datatable class="bootstrap material " [rows]="arrayForProcessFlowList"
+                  [columnMode]="'force'" [limit]="11" [scrollbarH]="true" [footerHeight]="25">
+
+                  <ngx-datatable-column name="Action" [width]="70" [resizeable]="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+                          <span class="center pointer mr-2" title="Update">
+                             <i class="fa fa-edit action-icon-font" (click)="getProcessFlowDetails(row)"></i>
+                        </span>
+
+                        <span class="center pointer delete-icon-color" title="Delete"
+                           data-toggle="modal">
+                          <i class="fa fa-trash action-icon-font" (click)="DeleteProcessFlowConfirmation(row)"></i>
+                        </span>
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Process Flow" prop="ProcessFlowName" [width]="180">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.ProcessFlowName}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Remark" prop="Remark" [width]="100">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.Remark}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Status" prop="Status" [width]="100">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.Status}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Created By" prop="CreatedBy" [width]="180">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.CreatedBy}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Creation Date" prop="CreationDate" [width]="150">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.CreationDate}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Modify By" prop="ModifyBy" [width]="150">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.ModifyBy}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Modification Date" prop="ModificationDate" [width]="150">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.ModificationDate}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <!-- <ngx-datatable-column name="Status" prop="Deactivate" [width]="100">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.Deactivate}}
+                    </ng-template>
+                  </ngx-datatable-column> -->
+
+                </ngx-datatable>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of Role main grid part  -->
+
+
+
+
+<!-- Page Close Modal -->
+<!-- <div class="modal fade cancel-modal" id="closeModalRole" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3 class="mb-3">Are you sure ? <br /> You want to exit this screen.</h3>
+        <p class="mb-4">Process can not be undone.</p>
+
+        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success" (click)="redirecToHome('closeModalRole')">Yes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!--End Page Close Modal-->
+
+
+<!-- Add Process Flow Modal Pop-up-->
+<div id="addNewProcessFlow" class="modal fade morePreferences-modal" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered modal-lg overflow-hidden moreprefrer common-modal-dialog modal-width90">
+    <div class="modal-content">
+      <div class="modal-header common-modal-header common-modal-padding">
+        <h4 class="modal-title m-0 text-light">Process Flow</h4>
+        <button type="button" class="btn p-0 common-modal-close-button" (click)="clearAllObjects()"><i
+            class="ti-close"></i></button>
+      </div>
+      <div class="modal-body font14">
+        <div class="form-material">
+          <div class="col-md-12 p-0">
+            <div class="">
+              <div class="page-group">
+                <div class="form-material">
+                  <div class="p-10 sky-blue-border common-modal-border-radius mb-2">
+                    <div class="table_filter">
+                      <div class="col-md-12 p-0 d-flex" [formGroup]="ProcessflowFormGroup">
+                        <div class="col-md-12">
+                          <div class="d-flex row">
+                            <div class="col-md-9 col-lg-9 col-xl-9">
+                              <div class="form-group required">
+                                <label class="control-label">Process Flow Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Process Flow Name"
+                                  name="ProcessFlowName"
+                                  [(ngModel)]="processFlowObject.ProcessFlowName"
+                                  [maxLength]="utilsService.validationService.MAX_100"
+                                  formControlName="ProcessFlowName"
+                                  autocomplete="off">
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-3 align-self-center d-flex justify-content-center">
+                              <div class="">
+                                <div class="form-check ">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck2"
+                                        [(ngModel)]="processFlowObject.Deactivate"
+                                        formControlName = "Deactive"
+                                        >
+                                  <label class="control-label form-check-label" for="exampleCheck2">Deactivate</label>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="d-flex row">
+                            <div class="col-md-12 col-lg-12 col-xl-12">
+                              <div class="form-group">
+                                <label class="control-label">Remark</label>
+                                <input type="text" class="form-control" placeholder="Enter Remark"
+                                    name="Remark"
+                                    [(ngModel)]="processFlowObject.Remark"
+                                   [maxLength]="utilsService.validationService.MAX_300"
+                                   formControlName="Remark"
+                                   autocomplete="off">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-10 sky-blue-border common-modal-border-radius">
+                    <div class="table_filter">
+                      <div class="col-md-12 p-0">
+                          <div class="col-md-12 p-0">
+                                   <div class="card-basicinfo py-1 mb-lg-0 mb-xl-0 mb-md-2 mb-2 mb-sm-2">
+                                    <h4>Process Flow Detail</h4>
+                                    <div class="card-body basiccard p-0">
+                                      <div class="form-horizontal form-material table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl" id="common-table">
+                                            <table class="table">
+                                              <thead class="thead-light">
+                                                <tr class="required">
+                                                  <th scope="col"> <i class="fas fa-plus-circle pointer" (click)="addProcessFlowDetils()"></i>
+                                                  <th scope="col" class="control-label width170">Sub Stage</th>
+                                                  <th scope="col" class="control-label width170">Action</th>
+                                                  <th scope="col" class="control-label width170">Next Sub Stage</th>
+                                                  <th scope="col" class="control-label width200">Portal Status</th>
+                                                  <th scope="col" class="width200">Created By</th>
+                                                  <th scope="col" class="width200">Creation Date</th>
+                                                  <th scope="col" class="width200">Modify By</th>
+                                                  <th scope="col" class="width200">Modification Date</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr *ngFor="let processFlowDetail of processFlowObject.WF_MProcessFlowDetails;let i = index" [ngClass]="{'bg-warning':processFlowDetail.IsRowDuplicate}">
+                                                  <td class="text-center">
+                                                    <a data-toggle="tooltip" data-placement="top"
+                                                    title="Delete" ><i
+                                                      class="fas fa-trash-alt text-danger pointer" (click)="removeProcessFlowDetils(i)"></i></a>
+                                                  </td>
+                                                  <td class="">
+                                                    <ng-select [items]="arrayForDDLSubStage"
+                                                               [dropdownPosition]="'bottom'"
+                                                               placeholder="Select SubStage"
+                                                               notFoundText="SubStage not found."
+                                                               [clearable]="false"
+                                                               bindLabel="ProcessName"
+                                                               bindValue="SubStageID"
+                                                               [(ngModel)]="processFlowDetail.SubStageID"
+                                                               (change)="updateFlagSet(i)"
+                                                               [disabled]="isUpdate == 1 && processFlowDetail.ProcessFlowDetailID!=0"
+                                                    >
+                                                    </ng-select>
+                                                  </td>
+                                                  <td class="d-flex width170">
+                                                    <ng-select class="w-100"
+                                                                [items]="arrayForDDLAction"
+                                                               [dropdownPosition]="'bottom'"
+                                                               placeholder="Select Action"
+                                                               notFoundText="Action not found."
+                                                               [clearable]="false"
+                                                               bindLabel="Description"
+                                                               bindValue="WF_ActionID"
+                                                               [(ngModel)]="processFlowDetail.ActionID"
+                                                               (change)="updateFlagSet(i)"
+                                                               [disabled]="isUpdate == 1 && processFlowDetail.ProcessFlowDetailID!=0"
+                                                    >
+                                                    </ng-select>
+
+                                                    <i class="fas fa-plus-circle my-auto pointer"
+                                                        *ngIf="processFlowDetail.ActionID == 2 || processFlowDetail.ActionID == 4"
+                                                        (click)="actionMapping(processFlowDetail,i)"></i>
+                                                  </td>
+                                                  <td>
+                                                    <ng-select [items]="arrayForDDLSubStage"
+                                                               [dropdownPosition]="'bottom'"
+                                                               placeholder="Select Next SubStage"
+                                                               notFoundText="Next SubStage not found."
+                                                               [clearable]="false"
+                                                               bindLabel="ProcessName"
+                                                               bindValue="SubStageID"
+                                                              [(ngModel)]="processFlowDetail.NextSubStageID"
+                                                              (change)="updateFlagSet(i)"
+                                                              [disabled]="isUpdate == 1 && processFlowDetail.ProcessFlowDetailID!=0"
+                                                    >
+                                                    </ng-select>
+                                                  </td>
+                                                  <td>
+                                                    <ng-select [items]="arrayForDDLPortalStatus"
+                                                               [dropdownPosition]="'bottom'"
+                                                               placeholder="Select Portal Status"
+                                                               notFoundText="Portal Status not found."
+                                                               [clearable]="false"
+                                                               bindLabel="Description"
+                                                               bindValue="WF_PortalStatusID"
+                                                              [(ngModel)]="processFlowDetail.PortalStatusID"
+                                                              (change)="updateFlagSet(i)"
+                                                              [disabled]="isUpdate == 1 && processFlowDetail.ProcessFlowDetailID!=0"
+                                                    >
+                                                    </ng-select>
+                                                  </td>
+                                                   <td>
+                                                    {{processFlowDetail.CreatedBy}}
+                                                  </td>
+                                                  <td>
+                                                    {{processFlowDetail.CreationDate}}
+                                                  </td>
+                                                  <td>
+                                                    {{processFlowDetail.ModifyBy}}
+                                                  </td>
+                                                  <td>
+                                                    {{processFlowDetail.ModificationDate}}
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                    </div>
+                                  </div>
+                        <!-- End Card  -->
+                      </div>
+                   </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-end p-1">
+        <button class="btn btn-outline-secondary ml-3"  *ngIf="isUpdate == 0" (click)="clearAllFields()">Clear</button>
+        <button type="button" class="btn btn-success" [disabled]="ProcessflowFormGroup.invalid" (click)="SaveUpdateCommon()" >Save</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+
+<!-- Add New Action MAaping Modal Pop-up-->
+<div id="addActionMappingModal" class="modal fade morePreferences-modal" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered modal-lg overflow-hidden moreprefrer common-modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header common-modal-header common-modal-padding">
+        <h4 class="modal-title m-0 text-light">Action Mapping</h4>
+        <button type="button" class="btn p-0 common-modal-close-button" data-backdrop="static" data-keyboard="false"><i
+            class="ti-close" (click)="closeActionMappingModal()"></i></button>
+      </div>
+      <div class="modal-body font14">
+        <div class="form-material">
+          <div class="col-md-12 p-0">
+            <div class="">
+              <div class="page-group">
+                <div class="form-material">
+                  <div class="p-10 sky-blue-border common-modal-border-radius">
+                    <div class="table_filter">
+                      <div class="col-md-12 p-0">
+                          <div class="col-md-12 p-0">
+
+                                  <div class="card-basicinfo py-1 mb-lg-0 mb-xl-0 mb-md-2 mb-2 mb-sm-2">
+
+                                    <div class="card-body basiccard p-0">
+                                      <div class="form-horizontal form-material table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl" id="common-table">
+                                            <table class="table">
+                                              <thead class="thead-light">
+                                                <tr class="required">
+                                                  <th scope="col"> <i class="fas fa-plus-circle pointer" (click)="addActionMapping()"></i>
+                                                  <th scope="col" class="control-label width170">File Type</th>
+                                                  <th scope="col" class="width150">Is Mandatory</th>
+                                                  <th scope="col" class="width170">Allow Multiple Files</th>
+                                                  <th scope="col" class="width200">Created By</th>
+                                                  <th scope="col" class="width200">Creation Date</th>
+                                                  <th scope="col" class="width200">Modify By</th>
+                                                  <th scope="col" class="width200">Modification Date</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr *ngFor="let actionMappingDetail of arrayForActionMapping;let i = index"  [ngClass]="{'bg-warning':actionMappingDetail.IsRowDuplicate}">
+                                                  <td class="text-center">
+                                                    <a data-toggle="tooltip" data-placement="top"
+                                                    title="Delete" ><i
+                                                      class="fas fa-trash-alt text-danger pointer" (click)="removeActionMapping(i)"></i></a>
+                                                  </td>
+                                                  <td class="width200">
+                                                    <ng-select [items]="arrayForDDLFileType"
+                                                               [dropdownPosition]="'bottom'"
+                                                               placeholder="Select File Type"
+                                                               notFoundText=" File Type not found."
+                                                               [clearable]="false"
+                                                               bindLabel="Description"
+                                                               bindValue="WF_FileTypeID"
+                                                              [(ngModel)]="actionMappingDetail.FileTypeID"
+                                                              (change)="changeActionMappingFlag(i)"
+
+                                                    >
+                                                    </ng-select>
+                                                  </td>
+                                                  <td class="text-center">
+                                                    <div class="form-check ">
+                                                      <input type="checkbox" class="form-check-input" id="exampleCheck2"
+                                                            [(ngModel)]="actionMappingDetail.IsMandatory"
+                                                            (change)="changeActionMappingFlag(i)"
+                                                            >
+                                                      <label class="control-label form-check-label" for="exampleCheck2"></label>
+                                                    </div>
+                                                  </td>
+                                                  <td class="text-center">
+                                                    <div class="form-check ">
+                                                      <input type="checkbox" class="form-check-input" id="exampleCheck3"
+                                                            [(ngModel)]="actionMappingDetail.AllowMultipalFiles"
+                                                            (change)="changeActionMappingFlag(i)"
+                                                            >
+                                                      <label class="control-label form-check-label" for="exampleCheck3"></label>
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    {{actionMappingDetail.CreatedBy}}
+                                                  </td>
+                                                  <td>
+                                                    {{actionMappingDetail.CreationDate}}
+                                                  </td>
+                                                  <td>
+                                                    {{actionMappingDetail.ModifyBy}}
+                                                  </td>
+                                                  <td>
+                                                    {{actionMappingDetail.ModificationDate}}
+                                                  </td>
+
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                    </div>
+                                  </div>
+                        <!-- End Card  -->
+                      </div>
+                   </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-end p-1">
+        <button class="btn btn-outline-secondary ml-3"  *ngIf="isUpdate == 0" (click)="clearActionMappingObject()">Clear</button>
+        <button type="button" class="btn btn-success"  (click)="SaveActionMappingInto()" >Set</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+
+<!-- End Delete Confirmation Modal -->
+<div class="modal fade morePreferences-modal" id="ProcessFlowDeleteConfirmationModal" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-lg overflow-hidden moreprefrer">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3 class="mb-3">Are you sure ? <br /> You want to delete</h3>
+        <button type="button" class="btn btn-secondary mr-2"  (click)="closeDeleteConfirmationPop()">No</button>
+        <button type="button" class="btn btn-success" (click)="commonDelete()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Delete Confirmation ModalModal -->

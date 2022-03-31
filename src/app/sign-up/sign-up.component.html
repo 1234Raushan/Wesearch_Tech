@@ -1,0 +1,101 @@
+
+  <!-- <div class="form-horizontal form-material" id="loginform" [formGroup]="this.signUpForm"> -->
+
+    <!-- <link rel="stylesheet" href=""> -->
+    <section class="sign-up-page header vh-100">
+
+
+      <div class="logologin justify-content-center ">
+      <div class="lgo">
+            <img src="http://localhost:4200/assets/Images/WESEARCH.png">
+          </div>
+      </div>
+
+      <div class="signup-wrapper">
+        <div class="content row d-flex align-items-center justify-content-center h-100 bg-cover">
+          <div class="col-md-8 col-xl-7 h-100">
+          </div>
+          <!-- <img src="https://encrypted-tbn0.gstatic.c/om/images?q=tbn:ANd9GcRjQn7_YXx2O64Sfe9XcAkRcba_oHvYI77jTA&usqp=CAU" class="sign-img img-fluid h-100 w-100" > -->
+
+          <div class="box-2 bg-light vh-100 col-md-12 col-lg-5 col-xl-5 px-5">
+            <!-- offset-xl-1 -->
+            <form [formGroup]="signUpForm"  autocomplete="off">
+<!-- UserName input -->
+
+            <h1 class="align-items-center mt-3 font-cover py-3">Sign-Up</h1>
+              <div class="form-outline form-content-height">
+                <label class="form-label required-1">Full Name</label>
+                <input [(ngModel)]="this.userObject.UserName"
+                formControlName = "UserName"
+                type="text"
+                [maxLength]="utilsService.validationService.MAX_50"
+                class="form-control"/>
+                <div class="errro_msg"
+                  *ngIf="signUpForm.controls['UserName'].hasError('required') &&signUpForm.controls['UserName'].touched">
+                  {{utilsService.validationService.REQUIRED_FOR_USER_NAME}}
+                </div>
+              </div>
+
+<!-- EmailID input -->
+          <div class="form-outline form-content-height">
+            <label class="form-label required-1">Email ID</label>
+            <input [(ngModel)]="this.userObject.EmailID"
+            formControlName="EmailID"
+            type="email" id="form1Example13"
+            [maxLength]="utilsService.validationService.MAX_50"
+            class="form-control valid"/>
+            <div class="errro_msg"
+              *ngIf="signUpForm.controls['EmailID'].hasError('required') &&  signUpForm.controls['EmailID'].touched" Display="Dynamic">
+              {{utilsService.validationService.EMAIL_REQUIRED}}
+            </div>
+          </div>
+
+          <div class="errro_msg"
+          *ngIf="signUpForm.controls['EmailID'].hasError('pattern') &&  signUpForm.controls['EmailID'].touched">
+          {{utilsService.validationService.EMAIL_ID_IS_INVALID}}
+        </div>
+
+<!-- MobileNo input -->
+          <div class="form-outline form-content-height">
+            <label class="form-label required-1" for="form1Example23">Mobile Number</label>
+            <input
+            [(ngModel)]="this.userObject.MobileNo"
+            formControlName="MobileNo"
+            (keydown)="ValidationNumbers($event)"
+            [maxLength]="utilsService.validationService.MAX_10"
+            type="text" id="form1Example23" class="form-control">
+            <div class="errro_msg"
+                  *ngIf="signUpForm.controls['MobileNo'].hasError('pattern') &&signUpForm.controls['MobileNo'].touched">
+                  {{'Enter valid phone number'}}
+            </div>
+          </div>
+
+<!-- DisplayName input -->
+            <div class="form-1 form-outline form-content-height">
+              <label class="form-label required-1">Display Name</label>
+              <input
+              formControlName="ProfileName"
+              [maxLength]="utilsService.validationService.MAX_100"
+              [(ngModel)]="this.userObject.ProfileName" type="text" id="form1Example23"
+              class="form-control">
+              <div class="errro_msg"
+                  *ngIf="signUpForm.controls['ProfileName'].hasError('required') &&signUpForm.controls['ProfileName'].touched">
+                  {{'Display name is required'}}
+              </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="button-box my-4 ">
+
+              <button [disabled]="signUpForm.invalid" (click)="SignUpAPI()"
+
+              (click)="SignUpAPI()" type="submit" class="button-1 btn btn-primary btn-lg bg-cover my-3  block w-100">Save</button>
+              <button
+              [routerLink]="['/login']" type="submit" class="button-2 btn-2 btn-dark btn-lg w-100">⇽ Login In</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+

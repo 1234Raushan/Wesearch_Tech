@@ -1,0 +1,57 @@
+<aside id="sidebar-1" class="left-sidebar bg-cover">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav active ">
+      <ul class="sidebarnav">
+        <!-- <li class="submenu">
+          <a [routerLink]="[ '/wfms/stage']" routerLinkActive="active" class="waves-effect waves-dark" [skipLocationChange]="true"><i class="ti-layout-media-right-alt">
+          </i><span class="hide-menu">Stage</span></a>
+        </li> -->
+        <!-- <li class="submenu">
+           </li> -->
+        <!-- <li class="submenu">
+          <a [routerLink]="[ '/wfms/processflow']" routerLinkActive="active" class="waves-effect waves-dark" [skipLocationChange]="true" ><i class="ti-exchange-vertical"></i><span class="hide-menu">ProcessFlow</span></a>
+        </li> -->
+         <!-- <li class="submenu">
+           <a [routerLink]="[ '/wfms/new-stage']" routerLinkActive="active" class="waves-effect waves-dark" [skipLocationChange]="true"><i class="fas fa-box"></i><span class="hide-menu">NewStage</span></a>
+          </li> -->
+
+
+
+        <li class="submenu">
+          <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="ti-settings">
+
+          </i><span class="hide-menu" >Under develop </span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li>
+              <a [routerLink]="[ '/wfms/processflow']" routerLinkActive="active" class="waves-effect waves-dark" [skipLocationChange]="true" ><i class="ti-exchange-vertical"></i><span class="hide-menu">ProcessFlow</span></a>
+
+              <a [routerLink]="[ '/wfms/processflow']" routerLinkActive="active" class="waves-effect waves-dark" [skipLocationChange]="true" ><i class="ti-exchange-vertical"></i><span class="hide-menu">ProcessFlow</span></a>
+
+              <a [routerLink]="[ '/wfms/new-stage']" routerLinkActive="active" class="waves-effect waves-dark" [skipLocationChange]="true"><i class="fas fa-box"></i><span class="hide-menu">NewStage</span></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+
+  <!-- End Sidebar scroll-->
+  <div class="copyright">
+    © 2022 <b>WESEARCH</b>
+  </div>
+  <!-- <div class="copyright" style="text-align: center; background-color: #3CB898; color: #ffffff;">
+    © 2020 <b>LAB</b>GURU
+  </div> -->
+</aside>
+<script>
+  $(document).ready(function() {
+  $("#sidebarCollapse").on('click',function() {
+    $("#sidebar").toggleClass('active');
+  });
+});
+</script>
+

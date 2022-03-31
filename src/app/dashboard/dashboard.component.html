@@ -1,0 +1,20 @@
+<div id="main-wrapper">
+  <!-- Topbar header - style you can find in pages.scss -->
+  <app-toolbar></app-toolbar>
+  <!-- End Topbar header -->
+  <!-- Left Sidebar - style you can find in sidebar.scss  -->
+  <app-navbar></app-navbar>
+  <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+  <!-- Page wrapper  -->
+  <div class="page-wrapper">
+      <!-- Container fluid  -->
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- End Container fluid  -->
+      <!-- footer -->
+      <app-footer></app-footer>
+      <!-- End footer -->
+  </div>
+  <!-- End Page wrapper  -->
+</div>

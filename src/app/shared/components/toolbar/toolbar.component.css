@@ -1,0 +1,15 @@
+.effect-grad:hover{
+  color: red!important;
+}
+
+.bg-cover{
+  background: linear-gradient(to right, #06e2bd, #0486c2);
+}
+
+@media only screen and (max-width: 400px) {
+
+    h3 {
+       font-size: 8px;
+    }
+
+ }

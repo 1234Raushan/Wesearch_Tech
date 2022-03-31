@@ -1,0 +1,183 @@
+<!-- Header section -->
+<div>
+    <div class="row page-titlebar1 p-0">
+      <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3 bgwhite-p10 d-flex justify-content-center justify-content-md-start">
+        <div class="form-material">
+          <h3 class="text-themecolor m-b-0 m-t-5 titleshadow">Rejection Reason</h3>
+        </div>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-4 col-xl-5 form-material px-0 pl-lg-2 pl-md-2 pl-xl-2 pl-sm-2">
+        <div class="col-md-12 col-lg-12 col-xl-12 px-0 h-100">
+          <div class="bgwhite-p10 p-0 d-flex align-items-center justify-content-center justify-content-md-start h-100 pl-lg-3 pl-md-3 pl-xl-3">
+            <div class="required">
+              <a data-toggle="modal"  class="aTag" (click)="addNewRejectionReason()">Add New Rejection Reason</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 d-flex justify-content-md-end bgwhite-p10 d-flex justify-content-center">
+        <div _ngcontent-c13="" class="">
+          <div _ngcontent-c13="" class="searchbox">
+            <div _ngcontent-c13="" class="inputicon commonfilter">
+              <input _ngcontent-c13="" class="form-control ng-pristine ng-valid ng-touched mb-1"
+             
+                placeholder="Type To Filter" type="text" ng-reflect-is-disabled="false" (keyup)="filterData($event.target)" >
+              <span _ngcontent-c13="" class="common-filter-icon" data-toggle="modal">
+                <i _ngcontent-c13="" class="ti-filter"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- End of Header section -->
+
+<!-- Reason Grid  -->
+<div class="tab-content">
+    <div class="tab-pane active">
+      <div>
+        <div class="row mobilefooterpadding">
+          <div class="col-md-12">
+            <div class="card stagess card-flex common-master-table-height mb-0 common-border-grid">
+              <div class="card-body p-0 width100-per" >
+                <div class="table-responsive casehistorytable overflow-auto caselisttabel" id="table-footer">
+  
+                  <ngx-datatable class="bootstrap material" [rows]="arrayForRejectionReason" 
+                    [columnMode]="'force'" [limit]="11" [scrollbarH]="true" [footerHeight]="30">
+  
+                    <ngx-datatable-column name="Action" [width]="70" [resizeable]="true">
+                      <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+                            <span class="center pointer mr-2" title="Update">
+                                <i class="fa fa-edit action-icon-font" (click)=" UpdateRejectionReasonModalOpen(row)"></i> 
+                          </span>
+  
+                          <span class="center pointer delete-icon-color" title="Delete"
+                             data-toggle="modal">
+                            <i class="fa fa-trash action-icon-font"  (click)="DeleteRejectionReasonConfirmation(row)" ></i> 
+                          </span>
+                      </ng-template>
+                    </ngx-datatable-column>
+  
+                    <ngx-datatable-column name="Reason" prop="Reason" [width]="180">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.Reason}}
+                      </ng-template>
+                    </ngx-datatable-column>
+  
+                    <ngx-datatable-column name="Status" prop="Status" [width]="100">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.Status}}
+                      </ng-template>
+                    </ngx-datatable-column>
+  
+                    <ngx-datatable-column name="Created By" prop="CreatedBy" [width]="180">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.CreatedBy}}
+                      </ng-template>
+                    </ngx-datatable-column>
+  
+                    <ngx-datatable-column name="Creation Date" prop="CreationDate" [width]="150">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.CreationDate}}
+                      </ng-template>
+                    </ngx-datatable-column>
+  
+                    <ngx-datatable-column name="Modify By" prop="ModifyBy" [width]="150">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.ModifyBy}}
+                      </ng-template>
+                    </ngx-datatable-column>
+  
+                    <ngx-datatable-column name="Modification Date" prop="ModificationDate" [width]="150">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.ModificationDate}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of Role main grid part  -->
+
+  <!-- End Delete Confirmation Modal -->
+<div class="modal fade cancel-modal" id="RejectionReasonDeleteConfirmationModal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body text-center">
+      <h3 class="mb-3">Are you sure ? <br /> You want to delete</h3>
+      <button type="button" class="btn btn-secondary mr-2"  (click)="closeDeleteConfirmationPop()">No</button>
+      <button type="button" class="btn btn-success" (click)="DeleteRejectionReason()">Yes</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- End Delete Confirmation ModalModal -->
+
+<!--Role Add And Update Modal-->
+<div id="addNewRejectionReason" class="modal fade morePreferences-modal" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true"  data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog modal-dialog-centered modal-lg moreprefrer common-modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header common-modal-header common-modal-padding">
+        <h4 class="modal-title m-0 text-light">Reason</h4>
+        <button type="button" class="btn p-0 common-modal-close-button" data-dismiss="modal" (click)="clearAllObjects()"><i class="ti-close"></i></button>
+      </div>
+      <div class="modal-body font14">
+        <div class="form-material">
+          <div class="col-md-12 p-0">
+            <div class="">
+              <div class="page-group">
+                <div class="form-material" [formGroup]="RejectionReasonFormGroup" >
+                    <div class="p-10 sky-blue-border common-modal-border-radius">
+                       <div class="table_filter">
+                          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 d-flex">
+                              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                  <div class="row">
+                                      <div class="col-md-9 col-lg-9 col-xl-9">
+                                        <div class="form-group required">
+                                          <label class="control-label">Reason</label>
+                                          <input type="text" class="form-control" placeholder="Enter Reason" name="Reason"
+                                          [(ngModel)]="RejectionReasonObject.Reason" formControlName="Reason"
+                                          [maxLength]="utilsService.validationService.MAX_100"
+                                          autocomplete="off"
+                                          >
+                                       </div>
+                                      </div>
+                                      <div class="col-md-3 col-lg-3 col-xl-3 align-self-center">
+                                        <div class="form-group">
+                                          <div class="form-check p-0">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1"
+                                            [(ngModel)]="RejectionReasonObject.Deactivate"
+                                            formControlName="Deactive" >
+                                            <label class="control-label form-check-label" for="exampleCheck1"
+                                            >Deactivate</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+         </div>
+       </div>
+    </div>
+    <div class="modal-footer justify-content-end p-1">
+      <button class="btn btn-outline-secondary ml-3" (click)="clearAllFields()" *ngIf="isUpdate == 0">Clear</button>
+      <button type="button" class="btn btn-success" [disabled]="RejectionReasonFormGroup.invalid"  (click)="SaveRejectionReason()" *ngIf="this.isUpdate==0">save</button>
+      <button type="button" class="btn btn-success" [disabled]="RejectionReasonFormGroup.invalid" (click)="UpdateRejectionReason()" *ngIf="this.isUpdate==1">Update</button>
+    </div>
+   </div>
+  </div>
+</div>
+<!--End Modal-->

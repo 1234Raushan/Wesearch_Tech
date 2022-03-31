@@ -1,0 +1,155 @@
+
+<section class="back">
+
+<!-- <div class="container login_page">
+  <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+    <div class="text-white px-3 py-4 p-md-5 mx-md-4"> -->
+        <!-- <h4 class="mb-4">We are more than just a company</h4>
+          <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+          <!-- <img src="http://localhost:4200/assets/Images/logo.png" class="align-item-center" style="width: 285px;" alt="logo">
+      </div>
+  </div> -->
+
+
+    <div class="bg-cover logologin ">
+      <div class="lgo">
+        <img src="assets/Images/WESEARCH.png">
+      </div>
+    </div>
+
+
+    <div class="loginwraper col-xs-12">
+      <div class="loginbox box-0 b-0">
+        <div class="card-body">
+          <div class="form-horizontal form-material" id="loginform" [formGroup]="this.loginForm">
+            <h1 class="main-font-col">Login</h1>
+            <div class="form-group required mb-5 form-content-height">
+              <div class="col-xs-12">
+                <label class="control-label mb-2">Email ID</label>
+                <div class="inputicon">
+                  <span><i class="ti-user"></i></span>
+                  <input class="form-control" type="text" [(ngModel)]="this.userOb.EmailID" formControlName="EmailID"
+                    placeholder="Email ID"
+                    autocomplete="false">
+                  <div class="errro_msg"
+                    *ngIf="loginForm.controls['EmailID'].hasError('required') &&  loginForm.controls['EmailID'].touched">
+                    {{utilsService.validationService.EMAIL_REQUIRED}}
+                  </div>
+                  <div class="errro_msg"
+                    *ngIf="loginForm.controls['EmailID'].hasError('pattern') &&  loginForm.controls['EmailID'].touched">
+                    {{utilsService.validationService.EMAIL_ID_IS_INVALID}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group required mb-5 form-content-height">
+              <div class="col-xs-12">
+                <label class="control-label mb-2">Password</label>
+                <div class="inputicon">
+                  <span><i class="ti-key"></i></span>
+                  <input class="form-control" [type]="flagForPasswordHideShow?'password':'text'"
+                    formControlName="Password" [(ngModel)]="userOb.Password" placeholder="Password" (keyup.enter)="loginAPI()"
+                    autocomplete="false">
+                  <span class="showpass" (click)="flagForPasswordHideShow = !flagForPasswordHideShow">
+                    <i class="fa"
+                      [ngClass]="{'fa-eye': flagForPasswordHideShow === false, 'fa-eye-slash': flagForPasswordHideShow}"></i>
+                  </span>
+                  <div class="errro_msg"
+                    *ngIf="loginForm.controls['Password'].hasError('required') &&  loginForm.controls['Password'].touched">
+                    {{utilsService.validationService.PASSWORD_REQUIRED}}</div>
+
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="d-flex no-block align-items-center">
+                <!-- <div *ngIf="loginResponse.ValidationMsg==='User Activation process is pending.Kindly click on Activate User link to proceed.'">
+                  <a class="text-muted" [routerLink]="[loginResponse.ActivateUserURL]" [skipLocationChange]="true"  routerLinkActive="router-link-active"><i class="fa fa-user-plus m-r-5" aria-hidden="true"></i>Activate User</a>
+                </div> -->
+                <div class="ml-auto">
+                  <!-- <a id="to-recover" class="text-muted" (click)="this.utilsService.setUserName(userOb.EmailID)" [routerLink]="['/labguru/forgot-password']" [skipLocationChange]="true"
+                    routerLinkActive="router-link-active"><i class="ti-lock
+                                          m-r-5"></i> Forgot Password?</a> -->
+                                          <a data-toggle="modal"  class="aTag main-font-col " (click)="forgetPassword()"> Forgot Password?</a>
+                </div>
+              </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+              <div class="col-xs-12">
+  <!-- Login -->
+                <button [disabled]="loginForm.invalid" (click)="loginAPI()"
+                  class="btn text-white bg-cover btn-outline-success btn-lg btn-block text-uppercase waves-effect waves-light"
+                  type="submit" (keyup.enter)="loginAPI()">Log In</button>
+  <!-- Sign-Up -->
+                  <button
+                  class="btn btn-outline-danger btn-lg btn-block text-uppercase waves-effect waves-dark"
+                  type="submit" [routerLink]="['/signup']">Sign Up</button>
+              </div> <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- -------------------------------------------------------------------------------------------------------------- -->
+<!-- ForgetPassword -->
+<div id="forgetPassword" class="modal fade morePreferences-modal" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg moreprefrer common-modal-dialog ">
+      <div class="modal-content">
+      <div class="modal-header common-modal-header common-modal-padding bg-cover">
+        <h4 class="modal-title m-0 text-light bg-cover">Forget Password</h4>
+        <button type="button" data-dismiss="modal" class="btn p-0 common-modal-close-button" (click)="clearAllObjects()"><i class="ti-close"></i></button>
+      </div>
+      <div class="modal-body font14">
+        <div class="form-material">
+          <div class="col-md-12 p-0">
+            <div class="">
+              <div class="page-group">
+                <div class="form-material" [formGroup]="forgotForm">
+                    <div class="p-10 sky-blue-border common-modal-border-radius">
+                       <div class="table_filter">
+                          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 d-flex">
+                              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                  <div class="row">
+                                      <div class="col-md-4 col-lg-9 col-xl-12">
+                                        <div class="form-group required">
+                                          <label class="control-label">Email Id</label>
+                                          <input [(ngModel)]="this.EmailID" type="text"
+                                                class="form-control"
+                                                placeholder="Enter Valid Email ID" name="StageName"
+                                                formControlName="EmailID"
+                                                [maxLength]="utilsService.validationService.MAX_100"
+                                                autocomplete="off">
+                                                <div class="errro_msg"
+                                                    *ngIf="forgotForm.controls['EmailID'].hasError('required') &&  forgotForm.controls['EmailID'].touched">
+                                                    {{utilsService.validationService.EMAIL_REQUIRED}}
+                                                </div>
+                                                <div class="errro_msg"
+                                                    *ngIf="forgotForm.controls['EmailID'].hasError('pattern') &&  forgotForm.controls['EmailID'].touched">
+                                                    {{utilsService.validationService.EMAIL_ID_IS_INVALID}}
+                                                </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+         </div>
+       </div>
+    </div>
+    <div class="modal-footer justify-content-end p-1">
+      <!-- <button class="btn btn-outline-secondary ml-3" (click)="clearAllFields()" *ngIf="isUpdate == 0">Clear</button> -->
+      <button type="button" class="btn btn-success" [disabled]="forgotForm.invalid" (click)="ResetPassword()">Reset Password</button>
+    </div>
+   </div>
+  </div>
+</div>
+</section>
